@@ -35,7 +35,7 @@ public class Main {
 
         // 3. Buscar un producto por ID y mostrar su información.
         System.out.println("\nBuscar producto por ID (3):");
-        Producto productoBuscado = inventario.buscarProductoPorId("P003");
+        Producto productoBuscado = inventario.buscarProductoPorId("3");
         if (productoBuscado != null) {
             System.out.println(productoBuscado);
         } else {
@@ -55,12 +55,12 @@ public class Main {
             System.out.println("Producto no encontrado para eliminar.");
         }
 
-        System.out.println("\nProductos después de eliminar P002:");
+        System.out.println("\nProductos después de eliminar 2:");
         inventario.listarProductos();
 
         // 6. Actualizar el stock de un producto existente.
-        System.out.println("\nActualizar stock del producto con ID P003 a 50:");
-        boolean actualizado = inventario.actualizarStock("P003", 50);
+        System.out.println("\nActualizar stock del producto con ID 3 a 50:");
+        boolean actualizado = inventario.actualizarStock("3", 50);
         if (actualizado) {
             System.out.println("Stock actualizado.");
         } else {
