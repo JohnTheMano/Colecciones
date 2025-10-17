@@ -9,14 +9,28 @@ package stock;
  * @author Win
  */
 public class Producto {
-    
+
     private String id;
     private String nombre;
     private double precio;
     private int cantidad;
-    private CategoriaProducto categoria; // enum
+    private CategoriaProducto categoria;
 
-    // Constructor
+    // Constructor por defecto
+    public Producto() {
+        this.id = "";
+        this.nombre = "";
+        this.precio = 0.0;
+        this.cantidad = 0;
+        this.categoria = CategoriaProducto.ALIMENTOS; // Valor por defecto
+    }
+
+    // Constructor sobrecargado con valores predeterminados para cantidad y categoria
+    public Producto(String id, String nombre, double precio) {
+        this(id, nombre, precio, 0, CategoriaProducto.ALIMENTOS);  // Usamos otro constructor
+    }
+
+    // Constructor completo que permite personalizar todos los valores
     public Producto(String id, String nombre, double precio, int cantidad, CategoriaProducto categoria) {
         this.id = id;
         this.nombre = nombre;
@@ -25,16 +39,7 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    // Método para mostrar la información del producto
-    public void mostrarInfo() {
-        System.out.println("ID: " + id);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Precio: $" + precio);
-        System.out.println("Cantidad: " + cantidad);
-        System.out.println("Categoría: " + categoria.getDescripcion());
-    }
-
-    // Getters y Setters
+    // Métodos getter y setter
     public String getId() {
         return id;
     }
@@ -74,12 +79,16 @@ public class Producto {
     public void setCategoria(CategoriaProducto categoria) {
         this.categoria = categoria;
     }
-    
+
+    // Método toString para representación de producto
     @Override
     public String toString() {
-        return "ID: " + id + "\nNombre: " + nombre + "\nPrecio: $" + precio + "\nCantidad: " + cantidad + "\nCategoría: " + categoria.getDescripcion();
+        return "Producto{" +
+               "ID='" + id + '\'' +
+               ", Nombre='" + nombre + '\'' +
+               ", Precio=" + precio +
+               ", Cantidad=" + cantidad +
+               ", Categoría=" + categoria +  // Mostramos la categoría
+               '}';
+    }
 }
-
-}
-
-

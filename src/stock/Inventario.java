@@ -5,106 +5,85 @@
 package stock;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Inventario {
-    private ArrayList<Producto> productos;  // Colección para almacenar productos
 
-    // Constructor
+    private List<Producto> productos;
+
     public Inventario() {
-        productos = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     // Método para agregar un producto al inventario
-    public void agregarProducto(Producto p) {
-        productos.add(p);
+    public void agregarProducto(Producto producto) {
+        this.productos.add(producto);
     }
 
     // Método para listar todos los productos en el inventario
     public void listarProductos() {
         for (Producto producto : productos) {
-            producto.mostrarInfo();
-            System.out.println("------------------------------------------");
+            System.out.println(producto);
         }
     }
 
-    // Método para buscar un producto por ID
+    // Buscar un producto por su ID
     public Producto buscarProductoPorId(String id) {
-        for (Producto p : productos) {
-            if (p.getId().equals(id)) {
-                return p;  // Si encontramos el producto, lo retornamos
+        for (Producto producto : productos) {
+            if (producto.getId().equals(id)) {
+                return producto;
             }
         }
-        return null;  // Si no lo encontramos, devolvemos null
+        return null;  // Si no se encuentra el producto
     }
 
-    // Método para eliminar un producto por ID
-    public void eliminarProducto(String id) {
-        Producto p = buscarProductoPorId(id);
-        if (p != null) {
-            productos.remove(p);
-            System.out.println("Producto con ID " + id + " ha sido eliminado.");
-        } else {
-            System.out.println("Producto con ID " + id + " no encontrado.");
+    // Eliminar producto por ID
+    public boolean eliminarProductoPorId(String id) {
+        Producto productoAEliminar = buscarProductoPorId(id);
+        if (productoAEliminar != null) {
+            productos.remove(productoAEliminar);
+            return true;
         }
+        return false;
     }
 
-    // Método para actualizar el stock de un producto
-    public void actualizarStock(String id, int nuevaCantidad) {
-        Producto p = buscarProductoPorId(id);
-        if (p != null) {
-            p.setCantidad(nuevaCantidad);
-            System.out.println("El stock del producto con ID " + id + " ha sido actualizado.");
-        } else {
-            System.out.println("Producto con ID " + id + " no encontrado.");
+    // Actualizar el stock de un producto
+    public boolean actualizarStock(String id, int nuevoStock) {
+        Producto producto = buscarProductoPorId(id);
+        if (producto != null) {
+            producto.setCantidad(nuevoStock);
+            return true;
         }
+        return false;
     }
 
-    // Método para filtrar productos por categoría
-    public void filtrarPorCategoria(CategoriaProducto categoria) {
-        for (Producto p : productos) {
-            if (p.getCategoria() == categoria) {
-                p.mostrarInfo();
-                System.out.println("------------------------------------------");
-            }
-        }
-    }
-
-    // Método para obtener el total de stock disponible
+    // Mostrar el total de stock disponible
     public int obtenerTotalStock() {
-        int total = 0;
-        for (Producto p : productos) {
-            total += p.getCantidad();
+        int totalStock = 0;
+        for (Producto producto : productos) {
+            totalStock += producto.getCantidad();
         }
-        return total;
+        return totalStock;
     }
 
-    // Método para obtener el producto con mayor stock
+    // Obtener el producto con mayor stock
     public Producto obtenerProductoConMayorStock() {
-        Producto maxStockProducto = null;
-        int maxStock = 0;
-        for (Producto p : productos) {
-            if (p.getCantidad() > maxStock) {
-                maxStockProducto = p;
-                maxStock = p.getCantidad();
+        Producto productoConMayorStock = null;
+        for (Producto producto : productos) {
+            if (productoConMayorStock == null || producto.getCantidad() > productoConMayorStock.getCantidad()) {
+                productoConMayorStock = producto;
             }
         }
-        return maxStockProducto;
+        return productoConMayorStock;
     }
-
-    // Método para filtrar productos por precio
-    public void filtrarProductosPorPrecio(double min, double max) {
-        for (Producto p : productos) {
-            if (p.getPrecio() >= min && p.getPrecio() <= max) {
-                p.mostrarInfo();
-                System.out.println("------------------------------------------");
-            }
+    
+    // Filtrar y mostrar productos que pertenezcan a una categoría específica.
+    public void listarProductosPorCategoria(CategoriaProducto categoria) {
+    for (Producto producto : productos) {
+        if (producto.getCategoria() == categoria) {
+            System.out.println(producto);
         }
     }
-
-    // Método para mostrar todas las categorías disponibles
-    public void mostrarCategoriasDisponibles() {
-        for (CategoriaProducto categoria : CategoriaProducto.values()) {
-            System.out.println(categoria + ": " + categoria.getDescripcion());
-        }
-    }
+}
 }

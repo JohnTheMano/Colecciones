@@ -1,26 +1,22 @@
 package stock;
 
+/**
+ * Enum que representa las categorías de productos.
+ * 
+ */
 public enum CategoriaProducto {
-    ALIMENTOS("Productos comestibles"),
-    ELECTRONICA("Dispositivos electrónicos"),
-    ROPA("Prendas de vestir"),
-    HOGAR("Artículos para el hogar");
+    ALIMENTOS("Productos comestibles como frutas, verduras, etc."),
+    ELECTRONICA("Productos electrónicos como computadoras, teléfonos, etc."),
+    ROPA("Productos de vestir como camisetas, pantalones, etc."),
+    HOGAR("Artículos para el hogar como muebles, electrodomésticos, etc.");
 
     private final String descripcion;
 
-    // Constructor
     CategoriaProducto(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    // Método para obtener la descripción de la categoría
     public String getDescripcion() {
         return descripcion;
     }
-    
-    @Override
-    public String toString() {
-        return this.descripcion;  // Devuelve la descripción de la categoría.
-}
-
 }
