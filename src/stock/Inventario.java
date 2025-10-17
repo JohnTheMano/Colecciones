@@ -80,10 +80,28 @@ public class Inventario {
     
     // Filtrar y mostrar productos que pertenezcan a una categoría específica.
     public void listarProductosPorCategoria(CategoriaProducto categoria) {
-    for (Producto producto : productos) {
-        if (producto.getCategoria() == categoria) {
-            System.out.println(producto);
+        for (Producto producto : productos) {
+            if (producto.getCategoria() == categoria) {
+                System.out.println(producto);
+        }
         }
     }
-}
+    // Filtrar productos con precios entre $1000 y $3000.
+    public void listarProductosPorRangoDePrecio(double precioMin, double precioMax) {
+        for (Producto producto : productos) {
+            if (producto.getPrecio() >= precioMin && producto.getPrecio() <= precioMax) {
+                System.out.println(producto);
+            }
+        }
+    }
+   
+    // Mostrar las categorías disponibles con sus descripciones.
+    public void mostrarCategoriasDisponibles() {
+        for (CategoriaProducto categoria : CategoriaProducto.values()) {
+            System.out.println(categoria + ": " + categoria.getDescripcion());
+        }
+    }
+
+
+
 }
